@@ -89,7 +89,7 @@ const Container = () => {
     console.log("before ", matrix);
     let modifiedMatrix = [];
 
-    for (const array of matrix) modifiedMatrix.push(this.shuffleArray(array));
+    for (const array of matrix) modifiedMatrix.push(shuffleArray(array));
 
     modifiedMatrix = this.shuffleArray(modifiedMatrix);
     console.log("after", modifiedMatrix);
