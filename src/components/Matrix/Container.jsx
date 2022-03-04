@@ -54,12 +54,8 @@ const Container = () => {
 
   const authenticate = () => {
     const userPassword = localStorage.getItem("userpassword");
-    console.log(userPassword);
-    console.log(password);
 
-    console.log(typeof userPassword, typeof password);
-
-    if (JSON.stringify(userPassword) == JSON.stringify(password)) {
+    if (JSON.stringify(userPassword) === JSON.stringify(password)) {
       alert("Authenticated!!! You are genuine");
       return;
     } else {
@@ -79,7 +75,7 @@ const Container = () => {
   };
 
   class Shuffler {
-    shuffleArray = (array) => {
+    shuffleArray = array => {
       let modifiedArray = [...array];
 
       let currentIndex, randomizingIndex;
@@ -92,7 +88,7 @@ const Container = () => {
       return modifiedArray;
     };
 
-    getShuffledMatrix = (matrix) => {
+    getShuffledMatrix = matrix => {
       console.log("before ", matrix);
       let modifiedMatrix = [];
 
@@ -106,10 +102,6 @@ const Container = () => {
 
   const reload = () => {
     window.location.reload();
-  };
-
-  const shuffleMatrix = () => {
-    setMatrix(new Shuffler().getShuffledMatrix(matrix));
   };
 
   const reset = () => {
