@@ -50,8 +50,6 @@ const Container = () => {
     ],
   ]);
 
-  let [copyMatrix, setcopyMatrix] = useState([]);
-
   const authenticate = () => {
     const userPassword = localStorage.getItem("userpassword");
 
@@ -74,31 +72,29 @@ const Container = () => {
     alert("Password Saved Successfully!!");
   };
 
-  class Shuffler {
-    shuffleArray = array => {
-      let modifiedArray = [...array];
+  const shuffleArray = array => {
+    let modifiedArray = [...array];
 
-      let currentIndex, randomizingIndex;
+    let currentIndex, randomizingIndex;
 
-      for (currentIndex = modifiedArray.length - 1; currentIndex > 0; currentIndex--) {
-        randomizingIndex = Math.floor(Math.random() * (currentIndex + 1));
-        [modifiedArray[randomizingIndex], modifiedArray[currentIndex]] = [modifiedArray[currentIndex], modifiedArray[randomizingIndex]];
-      }
+    for (currentIndex = modifiedArray.length - 1; currentIndex > 0; currentIndex--) {
+      randomizingIndex = Math.floor(Math.random() * (currentIndex + 1));
+      [modifiedArray[randomizingIndex], modifiedArray[currentIndex]] = [modifiedArray[currentIndex], modifiedArray[randomizingIndex]];
+    }
 
-      return modifiedArray;
-    };
+    return modifiedArray;
+  };
 
-    getShuffledMatrix = matrix => {
-      console.log("before ", matrix);
-      let modifiedMatrix = [];
+  const getShuffledMatrix = matrix => {
+    console.log("before ", matrix);
+    let modifiedMatrix = [];
 
-      for (const array of matrix) modifiedMatrix.push(this.shuffleArray(array));
+    for (const array of matrix) modifiedMatrix.push(this.shuffleArray(array));
 
-      modifiedMatrix = this.shuffleArray(modifiedMatrix);
-      console.log("after", modifiedMatrix);
-      return modifiedMatrix;
-    };
-  }
+    modifiedMatrix = this.shuffleArray(modifiedMatrix);
+    console.log("after", modifiedMatrix);
+    return modifiedMatrix;
+  };
 
   const reload = () => {
     window.location.reload();
@@ -112,9 +108,7 @@ const Container = () => {
   };
 
   useEffect(() => {
-    setcopyMatrix(matrix);
-    setMatrix(new Shuffler().getShuffledMatrix(matrix));
-    console.log(copyMatrix);
+    setMatrix(getShuffledMatrix(matrix));
   }, []);
 
   return (
